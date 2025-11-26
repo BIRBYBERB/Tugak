@@ -55,6 +55,3 @@ export default function HomePage({ onRecipeClick, onNavigate }) {
     </div>
   );
 }
-
-
-

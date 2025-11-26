@@ -117,4 +117,3 @@ export function useIsFavorited(recipeId) {
 }
 
 export { getUserIdentifier };
-

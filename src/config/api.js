@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 
 // Base URL configuration
@@ -35,4 +34,3 @@ apiClient.interceptors.response.use(
 );
 
 export { apiClient, BASE_URL };
-

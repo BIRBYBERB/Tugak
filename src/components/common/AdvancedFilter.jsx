@@ -212,4 +212,3 @@ export default function AdvancedFilter({ onFilterChange, onSearchChange, initial
     </div>
   );
 }
-

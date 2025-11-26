@@ -154,6 +154,3 @@ export const formatDraftTime = (timestamp) => {
   
   return savedTime.toLocaleDateString('id-ID');
 };
-
-
-

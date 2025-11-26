@@ -1,28 +1,28 @@
 // src/pages/MinumanPage.jsx
-import { useState } from 'react';
-import { useRecipes } from '../hooks/useRecipes';
-import RecipeGrid from '../components/minuman/RecipeGrid';
-import AdvancedFilter from '../components/common/AdvancedFilter';
+import { useState } from "react";
+import { useRecipes } from "../hooks/useRecipes";
+import RecipeGrid from "../components/minuman/RecipeGrid";
+import AdvancedFilter from "../components/common/AdvancedFilter.jsx";
 
 export default function MinumanPage({ onRecipeClick }) {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({
-    difficulty: '',
-    sortBy: 'created_at',
-    order: 'desc',
-    prepTimeMax: '',
+    difficulty: "",
+    sortBy: "created_at",
+    order: "desc",
+    prepTimeMax: "",
   });
   const [page, setPage] = useState(1);
 
   // Fetch recipes from API with all filters
   const { recipes, loading, error, pagination, refetch } = useRecipes({
-    category: 'minuman',
+    category: "minuman",
     search: searchQuery || undefined,
     difficulty: filters.difficulty || undefined,
     page,
     limit: 12,
     sort_by: filters.sortBy,
-    order: filters.order
+    order: filters.order,
   });
 
   const handleSearchChange = (query) => {
@@ -37,7 +37,9 @@ export default function MinumanPage({ onRecipeClick }) {
 
   // Client-side filter for prep time (since API might not support it)
   const filteredRecipes = filters.prepTimeMax
-    ? recipes.filter(recipe => recipe.prep_time <= parseInt(filters.prepTimeMax))
+    ? recipes.filter(
+        (recipe) => recipe.prep_time <= parseInt(filters.prepTimeMax)
+      )
     : recipes;
 
   return (
@@ -72,7 +74,9 @@ export default function MinumanPage({ onRecipeClick }) {
         {error && (
           <div className="text-center py-12">
             <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-              <p className="text-red-600 font-semibold mb-2">Terjadi Kesalahan</p>
+              <p className="text-red-600 font-semibold mb-2">
+                Terjadi Kesalahan
+              </p>
               <p className="text-red-500">{error}</p>
               <button
                 onClick={refetch}
@@ -97,14 +101,17 @@ export default function MinumanPage({ onRecipeClick }) {
                 </p>
               </div>
             ) : (
-              <RecipeGrid recipes={filteredRecipes} onRecipeClick={onRecipeClick} />
+              <RecipeGrid
+                recipes={filteredRecipes}
+                onRecipeClick={onRecipeClick}
+              />
             )}
 
             {/* Pagination */}
             {pagination && pagination.total_pages > 1 && (
               <div className="mt-12 flex flex-col md:flex-row items-center justify-center gap-4">
                 <button
-                  onClick={() => setPage(p => Math.max(1, p - 1))}
+                  onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page === 1}
                   className="px-6 py-3 bg-white/80 backdrop-blur border border-slate-300 rounded-xl hover:bg-green-50 hover:border-green-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-medium text-slate-700"
                 >
@@ -121,7 +128,7 @@ export default function MinumanPage({ onRecipeClick }) {
                 </div>
 
                 <button
-                  onClick={() => setPage(p => p + 1)}
+                  onClick={() => setPage((p) => p + 1)}
                   disabled={page === pagination.total_pages}
                   className="px-6 py-3 bg-white/80 backdrop-blur border border-slate-300 rounded-xl hover:bg-green-50 hover:border-green-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all font-medium text-slate-700"
                 >
@@ -135,4 +142,3 @@ export default function MinumanPage({ onRecipeClick }) {
     </div>
   );
 }
-

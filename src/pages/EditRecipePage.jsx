@@ -668,4 +668,3 @@ export default function EditRecipePage({ recipeId, onBack, onSuccess }) {
     </div>
   );
 }
-

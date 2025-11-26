@@ -94,4 +94,3 @@ export default function FavoriteButton({ recipeId, onToggle, showCount = false, 
     </button>
   );
 }
-
