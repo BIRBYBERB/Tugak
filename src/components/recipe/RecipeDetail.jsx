@@ -457,5 +457,3 @@ export default function RecipeDetail({ recipeId, onBack, onEdit, category = 'mak
   );
 }
 
-
-
